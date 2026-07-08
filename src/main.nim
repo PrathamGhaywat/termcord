@@ -6,5 +6,3 @@ while true:
     if command == "!exit":
         break
     discard execShellCmd(command)
-
-    echo "You typed: ", command
