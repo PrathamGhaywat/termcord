@@ -2,7 +2,8 @@
 TermCord is a tool that allows you to record your terminal sessions and then replay or execute them across your system and also share it as a reusable file.
 
 TODO:
-[] save sessions to homeDir
+[x] save sessions to homeDir
+[] be able to delete sessions
 [] get session names
 [] execute session in the directory automatically
 [] list all sessions
