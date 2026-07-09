@@ -1,6 +1,8 @@
+# allows us to add commands to session
+
 import std/[os, json, strformat]
 
-proc snap(sessionName: string, cmd: string) =
+proc snap*(sessionName: string, cmd: string) =
   var data: JsonNode
 
   let homeDir = getHomeDir()
