@@ -4,7 +4,7 @@ import std/[os, json, strformat]
 
 proc deleteSession*(sessionName: string) =
     ## Deletes the session file itself.
-    let filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
+    var filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
 
     try:
         removeFile(filePath)
@@ -13,7 +13,7 @@ proc deleteSession*(sessionName: string) =
 
 
 proc deleteCommand*(sessionName: string, cmd: string, removalType: string) =
-    let filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
+    var filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
 
     if not fileExists(filePath):
         echo "Session does not exist"

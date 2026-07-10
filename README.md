@@ -3,7 +3,7 @@ TermCord is a tool that allows you to record your terminal sessions and then rep
 
 TODO:
 [x] save sessions to homeDir
-[] be able to delete sessions
+[x] be able to delete sessions
 [] get session names
 [] execute session in the directory automatically
 [] list all sessions
