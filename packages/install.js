@@ -4,16 +4,20 @@ const path = require("path");
 
 const VERSION = "v1.0.0";
 
-const platformMap = {
-  win32: "termcord-windows.exe",
-  darwin: "termcord-macos",
-  linux: "termcord-linux",
+const assetMap = {
+  "win32-x64": "termcord-windows-x64.exe",
+  "win32-arm64": "termcord-windows-arm64.exe",
+  "darwin-arm64": "termcord-macos-arm64",
+  "linux-x64": "termcord-linux-x64",
+  "linux-arm64": "termcord-linux-arm64",
 };
 
-const assetName = platformMap[process.platform];
+const platformKey = `${process.platform}-${process.arch}`;
+const assetName = assetMap[platformKey];
 
 if (!assetName) {
-  console.error(`Unsupported platform: ${process.platform}`);
+  console.error(`Unsupported platform/arch: ${platformKey}`);
+  console.error("Available platforms: win32-x64, win32-arm64, darwin-arm64, linux-x64, linux-arm64");
   process.exit(1);
 }
 
@@ -25,7 +29,7 @@ const url = `https://github.com/PrathamGhaywat/termcord/releases/download/${VERS
 
 fs.mkdirSync(vendorDir, { recursive: true });
 
-console.log(`Downloading termcord for ${process.platform}...`);
+console.log(`Downloading termcord for ${process.platform}-${process.arch}...`);
 
 https
   .get(url, (res) => {
