@@ -4,23 +4,24 @@ const path = require("path");
 
 const VERSION = "v1.0.2";
 
-const assetMap = {
-  "win32-x64": "termcord-windows-x64.exe",
-  "win32-arm64": "termcord-windows-arm64.exe",
-  "darwin-arm64": "termcord-macos-arm64",
-  "linux-x64": "termcord-linux-x64",
-  "linux-arm64": "termcord-linux-arm64",
+const suffixMap = {
+  "win32-x64": "windows-x64.exe",
+  "win32-arm64": "windows-arm64.exe",
+  "darwin-arm64": "macos-arm64",
+  "linux-x64": "linux-x64",
+  "linux-arm64": "linux-arm64",
 };
 
 const platformKey = `${process.platform}-${process.arch}`;
-const assetName = assetMap[platformKey];
+const suffix = suffixMap[platformKey];
 
-if (!assetName) {
+if (!suffix) {
   console.error(`Unsupported platform/arch: ${platformKey}`);
   console.error("Available platforms: win32-x64, win32-arm64, darwin-arm64, linux-x64, linux-arm64");
   process.exit(1);
 }
 
+const assetName = `${VERSION}-termcord-${suffix}`;
 const binaryName = process.platform === "win32" ? "termcord.exe" : "termcord";
 const vendorDir = path.join(__dirname, "vendor");
 const binaryPath = path.join(vendorDir, binaryName);
