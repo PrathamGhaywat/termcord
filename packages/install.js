@@ -2,7 +2,7 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
-const VERSION = "v1.0.0";
+const VERSION = "v1.0.2";
 
 const assetMap = {
   "win32-x64": "termcord-windows-x64.exe",
