@@ -1,7 +1,7 @@
 {
   "name": "termcord",
   "version": "1.0.0",
-  "description": "Persistent terminal memory for AI coding agents",
+  "description": "Terminal command recorder for agentic and human workflows",
   "bin": {
     "termcord": "bin/termcord.js"
   },
