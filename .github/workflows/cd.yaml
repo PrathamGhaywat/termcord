@@ -45,10 +45,10 @@ jobs:
 
       - name: Upload to release
         if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          release_name="${{ github.ref_name }}"
-          cp "bin/${{ matrix.artifact_name }}" "bin/$release_name-${{ matrix.artifact_name }}"
-          gh release create "$release_name" --title "$release_name" --notes "" --latest=false 2>/dev/null || true
-          gh release upload "$release_name" "bin/$release_name-${{ matrix.artifact_name }}" --clobber
+          cp "bin/${{ matrix.artifact_name }}" "bin/${{ github.ref_name }}-${{ matrix.artifact_name }}"
+          gh release create "${{ github.ref_name }}" --title "${{ github.ref_name }}" --notes "" --latest=false 2>/dev/null || true
+          gh release upload "${{ github.ref_name }}" "bin/${{ github.ref_name }}-${{ matrix.artifact_name }}" --clobber
