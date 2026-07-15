@@ -31,11 +31,15 @@ fs.mkdirSync(vendorDir, { recursive: true });
 
 console.log(`Downloading termcord for ${process.platform}-${process.arch}...`);
 
-https
-  .get(url, (res) => {
+function download(url, resolve, reject) {
+  https.get(url, (res) => {
+    if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+      download(new URL(res.headers.location, url).href, resolve, reject);
+      return;
+    }
     if (res.statusCode !== 200) {
-      console.error(`Download failed (HTTP ${res.statusCode}): ${url}`);
-      process.exit(1);
+      reject(new Error(`HTTP ${res.statusCode}: ${url}`));
+      return;
     }
     const file = fs.createWriteStream(binaryPath);
     res.pipe(file);
@@ -45,9 +49,14 @@ https
         fs.chmodSync(binaryPath, 0o755);
       }
       console.log("termcord installed successfully.");
+      resolve();
     });
+    file.on("error", reject);
   })
-  .on("error", (err) => {
-    console.error(`Download failed: ${err.message}`);
-    process.exit(1);
-  });
+  .on("error", reject);
+}
+
+download(url, () => {}, (err) => {
+  console.error(`Download failed: ${err.message}`);
+  process.exit(1);
+});
