@@ -1,0 +1,30 @@
+{
+  "name": "termcord",
+  "version": "1.0.0",
+  "description": "Persistent terminal memory for AI coding agents",
+  "bin": {
+    "termcord": "bin/termcord.js"
+  },
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "files": [
+    "bin",
+    "install.js",
+    "package.json"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrathamGhaywat/termcord.git"
+  },
+  "homepage": "https://github.com/PrathamGhaywat/termcord",
+  "keywords": [
+    "terminal",
+    "cli",
+    "workflow",
+    "ai",
+    "agent",
+    "command-memory"
+  ]
+}

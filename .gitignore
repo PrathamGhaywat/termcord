@@ -1,1 +1,4 @@
-bin
+/bin
+vendor
+packages/vendor
+packages/node_modules

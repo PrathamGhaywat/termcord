@@ -119,7 +119,7 @@ This makes it ideal for:
 ## Installation
 
 ```bash
-npm install -g @pratham/termcord
+npm install -g termcord
 ```
 
 ## Usage
