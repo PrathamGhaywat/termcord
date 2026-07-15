@@ -36,19 +36,17 @@ proc deleteCommand*(sessionName: string, cmd: string, removalType: string) =
         if command.getStr() == cmd:
             if removalType == "all":
                 continue
+            if removalType == "one" and not removed:
+                removed = true
+                continue
+        newCommands.add(command)
 
-        if removalType == "one" and not removed:
-            removed = true
-            continue
+    data["commands"] = newCommands
 
-    newCommands.add(command)
+    writeFile(filePath, data.pretty())
 
-  data["commands"] = newCommands
-
-  writeFile(filePath, data.pretty())
-
-  if removed or removalType == "all":
-    echo "Command(s) deleted."
-  else:
-    echo "Command not found."
+    if removed or removalType == "all":
+        echo "Command(s) deleted."
+    else:
+        echo "Command not found."
 

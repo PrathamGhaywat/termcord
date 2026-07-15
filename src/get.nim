@@ -1,18 +1,18 @@
 # contains the function to get the commands of the file 
 import std/[os, json, strformat, strutils]
 
-proc getCommands*(session_name: string) : auto =
-    var filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
+proc getCommands*(sessionName: string): JsonNode =
+    let filePath = joinPath(getHomeDir(), ".termcord", fmt"{sessionName}.json")
 
     if not fileExists(filePath):
         echo "Session doesn't exist"
-        return
-    
-    var data = parseFile(filePath)
+        return newJArray()
+
+    let data = parseFile(filePath)
 
     if not data.hasKey("commands") or data["commands"].kind != JArray:
         echo "Invalid session file: no commands array"
-        return
+        return newJArray()
 
     return data["commands"]
 
