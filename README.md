@@ -14,7 +14,7 @@ npx skills add prathamghaywat/termcord-skill
 npm install -g termcord
 ```
 
-If installed using other package manager, make sure to trust the post
+If installed using other package manager, make sure to trust the postinstallscript since this installs the binary for termcord
 
 ## Usage
 
