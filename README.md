@@ -3,11 +3,18 @@ TermCord is a CLI tool that let's humans aswell as agents read, write and execut
 
 This makes commands easy to use across sessions, context windows and ultrafast.
 
+Just add the skill to give your agents the power of termcord:
+```bash
+npx skills add prathamghaywat/termcord-skill
+```
+
 ## Installation
 
 ```bash
 npm install -g termcord
 ```
+
+If installed using other package manager, make sure to trust the post
 
 ## Usage
 
@@ -18,6 +25,8 @@ termcord get <name>        # Show stored commands
 termcord list              # List all workflows
 termcord delete <name>     # Remove a workflow
 ```
+
+To exit snap just type in ``!exit`` and it will exit the recording
 
 
 ## Storage
